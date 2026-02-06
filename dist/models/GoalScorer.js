@@ -2,9 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.GoalScorer = void 0;
 class GoalScorer {
-    constructor(playerId, matchId) {
-        this.playerId = playerId;
+    constructor(id, matchId, playerId, goals) {
+        this.id = id;
         this.matchId = matchId;
+        this.playerId = playerId;
+        this.goals = goals;
     }
 }
 exports.GoalScorer = GoalScorer;

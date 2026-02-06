@@ -1,50 +1,63 @@
 "use strict";
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.MatchController = void 0;
 class MatchController {
     constructor(matchService) {
         this.matchService = matchService;
-    }
-    getMatches(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
+        this.getAllMatches = async (req, res) => {
             try {
-                const matches = yield this.matchService.getAllMatches();
-                res.status(200).json(matches);
+                const matches = await this.matchService.getAllMatches();
+                res.json(matches);
             }
             catch (error) {
-                res.status(500).json({ message: 'Error retrieving matches', error });
+                res.status(500).json({ message: 'Error fetching matches', error });
             }
-        });
-    }
-    addMatch(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const newMatch = yield this.matchService.createMatch(req.body);
-                res.status(201).json(newMatch);
+        };
+        this.getMatchById = (req, res) => {
+            const id = parseInt(req.params.id);
+            const match = this.matchService.getMatchById(id);
+            if (!match) {
+                res.status(404).json({ message: 'Match not found' });
+                return;
             }
-            catch (error) {
-                res.status(400).json({ message: 'Error adding match', error });
+            res.json(match);
+        };
+        this.createMatch = (req, res) => {
+            const match = this.matchService.createMatch(req.body);
+            res.status(201).json(match);
+        };
+        this.updateMatch = (req, res) => {
+            const id = parseInt(req.params.id);
+            const match = this.matchService.updateMatch(id, req.body);
+            if (!match) {
+                res.status(404).json({ message: 'Match not found' });
+                return;
             }
-        });
-    }
-    updateMatch(req, res) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const updatedMatch = yield this.matchService.updateMatch(req.params.id, req.body);
-                res.status(200).json(updatedMatch);
+            res.json(match);
+        };
+        this.patchMatch = (req, res) => {
+            const id = parseInt(req.params.id);
+            const match = this.matchService.getMatchById(id);
+            if (!match) {
+                res.status(404).json({ message: 'Match not found' });
+                return;
             }
-            catch (error) {
-                res.status(400).json({ message: 'Error updating match', error });
+            // Partial update - alleen isEvent updaten
+            const updatedMatch = this.matchService.updateMatch(id, {
+                ...match,
+                ...req.body
+            });
+            res.json(updatedMatch);
+        };
+        this.deleteMatch = (req, res) => {
+            const id = parseInt(req.params.id);
+            const success = this.matchService.deleteMatch(id);
+            if (!success) {
+                res.status(404).json({ message: 'Match not found' });
+                return;
             }
-        });
+            res.status(204).send();
+        };
     }
 }
-exports.default = MatchController;
+exports.MatchController = MatchController;

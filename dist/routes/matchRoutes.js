@@ -1,17 +1,15 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.setMatchRoutes = void 0;
-const express_1 = require("express");
-const matchController_1 = __importDefault(require("../controllers/matchController"));
-const router = (0, express_1.Router)();
-const matchController = new matchController_1.default();
-function setMatchRoutes(app) {
-    app.use('/api/matches', router);
-    router.get('/', matchController.getMatches.bind(matchController));
-    router.post('/', matchController.addMatch.bind(matchController));
-    router.put('/:id', matchController.updateMatch.bind(matchController));
-}
 exports.setMatchRoutes = setMatchRoutes;
+const matchController_1 = require("../controllers/matchController");
+const matchService_1 = require("../services/matchService");
+function setMatchRoutes(app) {
+    const matchService = new matchService_1.MatchService();
+    const matchController = new matchController_1.MatchController(matchService);
+    app.get('/api/matches', matchController.getAllMatches);
+    app.get('/api/matches/:id', matchController.getMatchById);
+    app.post('/api/matches', matchController.createMatch);
+    app.put('/api/matches/:id', matchController.updateMatch);
+    app.patch('/api/matches/:id', matchController.patchMatch);
+    app.delete('/api/matches/:id', matchController.deleteMatch);
+}

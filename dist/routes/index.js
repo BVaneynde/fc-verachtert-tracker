@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.setRoutes = void 0;
+exports.setRoutes = setRoutes;
 const express_1 = require("express");
 const matchRoutes_1 = require("./matchRoutes");
 const playerRoutes_1 = require("./playerRoutes");
@@ -10,4 +10,3 @@ function setRoutes(app) {
     (0, playerRoutes_1.setPlayerRoutes)(router);
     app.use('/api', router);
 }
-exports.setRoutes = setRoutes;
