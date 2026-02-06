@@ -136,11 +136,11 @@ function displayTopscorers() {
         const row = document.createElement('tr');
         row.className = rankClass;
         row.innerHTML = `
-            <td class="rank">${rank}</td>
-            <td>${scorer.name}</td>
-            <td class="goals-cell">${scorer.goals}</td>
-            <td>${scorer.matches}</td>
-            <td>${average}</td>
+            <td data-label="Rang" class="rank">${rank}</td>
+            <td data-label="Naam">${scorer.name}</td>
+            <td data-label="Doelpunten" class="goals-cell">${scorer.goals}</td>
+            <td data-label="Wedstrijden">${scorer.matches}</td>
+            <td data-label="Gemiddelde">${average}</td>
         `;
         tbody.appendChild(row);
     });

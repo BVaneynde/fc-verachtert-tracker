@@ -92,11 +92,11 @@ function displayPlayers() {
         
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${player.name}</td>
-            <td>${playerMatches}</td>
-            <td>${totalPlayedMatches}</td>
-            <td><strong>${attendancePercentage}%</strong></td>
-            <td>
+            <td data-label="Naam">${player.name}</td>
+            <td data-label="Wedstrijden Gespeeld">${playerMatches}</td>
+            <td data-label="Totaal Wedstrijden">${totalPlayedMatches}</td>
+            <td data-label="Aanwezigheid"><strong>${attendancePercentage}%</strong></td>
+            <td data-label="Acties">
                 <button onclick="deletePlayer(${player.id})" class="btn-delete">Verwijderen</button>
             </td>
         `;

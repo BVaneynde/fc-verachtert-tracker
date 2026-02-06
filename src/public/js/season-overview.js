@@ -120,10 +120,10 @@ function loadMatchesTable(matches) {
         
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${match.date}</td>
-            <td>${match.opponent}</td>
-            <td>${match.homeScore} - ${match.awayScore}</td>
-            <td class="${resultClass}">${result}</td>
+            <td data-label="Datum">${match.date}</td>
+            <td data-label="Tegenstander">${match.opponent}</td>
+            <td data-label="Score">${match.homeScore} - ${match.awayScore}</td>
+            <td data-label="Resultaat" class="${resultClass}">${result}</td>
         `;
         tbody.appendChild(row);
     });

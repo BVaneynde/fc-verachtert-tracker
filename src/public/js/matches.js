@@ -109,11 +109,11 @@ function displayMatches() {
             : `<a href="/match-details.html?id=${match.id}" class="btn-details">Details</a>`;
         
         row.innerHTML = `
-            <td>${match.date}</td>
-            <td>${match.opponent}</td>
-            <td>${scoreDisplay}</td>
-            <td class="${resultClass}">${result}</td>
-            <td>
+            <td data-label="Datum">${match.date}</td>
+            <td data-label="Tegenstander">${match.opponent}</td>
+            <td data-label="Score">${scoreDisplay}</td>
+            <td data-label="Resultaat" class="${resultClass}">${result}</td>
+            <td data-label="Type">
                 <label class="checkbox-container">
                     <input type="checkbox" 
                            class="event-checkbox" 
@@ -122,7 +122,7 @@ function displayMatches() {
                     <span class="checkbox-label">Evenement</span>
                 </label>
             </td>
-            <td>${detailsButton}</td>
+            <td data-label="Acties">${detailsButton}</td>
         `;
         tbody.appendChild(row);
     });

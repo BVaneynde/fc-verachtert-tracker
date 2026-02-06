@@ -599,3 +599,214 @@ section h2 {
     color: #ccc;
     font-style: italic;
 }
+/* ============================================
+   RESPONSIVE MOBILE STYLING
+   ============================================ */
+
+/* Tablet en kleiner (768px) */
+@media screen and (max-width: 768px) {
+    /* Header aanpassingen */
+    header h1 {
+        font-size: 1.5em;
+        margin: 0 0 10px 0;
+    }
+    
+    /* Navigatie menu verticaal op mobiel */
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 0 10px;
+    }
+    
+    nav ul li {
+        display: block;
+        margin: 0;
+    }
+    
+    nav ul li a {
+        display: block;
+        padding: 10px;
+        text-align: center;
+    }
+    
+    /* Container padding */
+    .container {
+        padding: 15px;
+        margin: 15px auto;
+    }
+    
+    /* Homepage cards */
+    .cards-container {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 10px;
+    }
+    
+    .card {
+        padding: 20px;
+    }
+    
+    .card h2 {
+        font-size: 1.3em;
+    }
+    
+    .card-icon {
+        font-size: 2em;
+    }
+    
+    /* Formulieren */
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        font-size: 16px;
+    }
+    
+    /* Tabellen responsive maken */
+    table {
+        font-size: 0.85em;
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+    }
+    
+    table thead {
+        display: none;
+    }
+    
+    table tbody,
+    table tr {
+        display: block;
+    }
+    
+    table tr {
+        margin-bottom: 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px;
+        background: white;
+    }
+    
+    table td {
+        display: block;
+        text-align: left;
+        border: none;
+        padding: 8px 10px;
+        position: relative;
+        padding-left: 45%;
+    }
+    
+    table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        font-weight: bold;
+        color: #cc0000;
+    }
+    
+    /* Knoppen volle breedte op mobiel */
+    button,
+    .btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 1em;
+    }
+    
+    /* Button groepen */
+    .button-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .button-group button {
+        width: 100%;
+    }
+    
+    /* Match details grid */
+    .match-info-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    /* Stats grid */
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    /* Filter section */
+    .filter-section {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .filter-section select {
+        width: 100%;
+    }
+}
+
+/* Kleine telefoons (480px) */
+@media screen and (max-width: 480px) {
+    header h1 {
+        font-size: 1.2em;
+    }
+    
+    nav ul li a {
+        font-size: 0.9em;
+        padding: 8px;
+    }
+    
+    .container {
+        padding: 10px;
+        margin: 10px auto;
+    }
+    
+    h2 {
+        font-size: 1.3em;
+    }
+    
+    table {
+        font-size: 0.8em;
+    }
+    
+    table td {
+        padding: 6px 8px;
+        padding-left: 42%;
+    }
+    
+    .card-icon {
+        font-size: 1.5em;
+    }
+    
+    .form-group {
+        margin-bottom: 12px;
+    }
+}
+
+/* Landscape mode voor kleine schermen */
+@media screen and (max-height: 600px) and (orientation: landscape) {
+    header {
+        padding: 15px 0;
+    }
+    
+    header h1 {
+        font-size: 1.2em;
+        margin: 0 0 8px 0;
+    }
+    
+    nav ul {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    nav ul li {
+        display: inline-block;
+        margin: 0 5px;
+    }
+    
+    .container {
+        padding: 10px;
+    }
+}
