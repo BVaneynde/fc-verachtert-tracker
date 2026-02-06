@@ -3,5 +3,5 @@ dist/
 *.log
 .env
 .DS_Store
-data/*.json
-!data/.gitignore
+data/matches.json
+data/players.json
