@@ -1,6 +1,8 @@
 import { Match } from '../models/Match';
 import { Match as IMatch } from '../types';
 import { ScraperService } from './scraperService';
+import { MatchRepository } from '../repositories/matchRepository';
+import { isDatabaseConnected } from '../config/database';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -8,11 +10,13 @@ export class MatchService {
     private matches: Match[] = [];
     private nextId: number = 1;
     private scraperService: ScraperService;
+    private matchRepository: MatchRepository;
     private isInitialized: boolean = false;
     private dataFile: string = path.join(__dirname, '../../data/matches.json');
 
     constructor() {
         this.scraperService = new ScraperService();
+        this.matchRepository = new MatchRepository();
         this.ensureDataDirectory();
         this.initializeMatches();
     }
@@ -149,6 +153,11 @@ export class MatchService {
             }
             
             this.isInitialized = true;
+            
+            // Migrate to MongoDB if connected
+            if (isDatabaseConnected()) {
+                await this.matchRepository.migrateFileToMongoDB();
+            }
         } catch (error) {
             console.error('Error initializing matches:', error);
             this.isInitialized = true;
@@ -159,6 +168,12 @@ export class MatchService {
         if (!this.isInitialized) {
             await this.initializeMatches();
         }
+        
+        // Always return from MongoDB if connected
+        if (isDatabaseConnected()) {
+            return await this.matchRepository.getAllMatches();
+        }
+        
         return this.matches;
     }
 
@@ -180,6 +195,12 @@ export class MatchService {
         );
         this.matches.push(newMatch);
         this.saveToFile();
+        
+        // Also save to MongoDB if connected
+        if (isDatabaseConnected()) {
+            this.matchRepository.saveMatch(newMatch);
+        }
+        
         return newMatch;
     }
 
@@ -202,6 +223,12 @@ export class MatchService {
             matchData.isEvent ?? existingMatch.isEvent
         );
         this.saveToFile();
+        
+        // Also save to MongoDB if connected
+        if (isDatabaseConnected()) {
+            this.matchRepository.saveMatch(this.matches[matchIndex]);
+        }
+        
         return this.matches[matchIndex];
     }
 
@@ -211,6 +238,12 @@ export class MatchService {
 
         this.matches.splice(matchIndex, 1);
         this.saveToFile();
+        
+        // Also delete from MongoDB if connected
+        if (isDatabaseConnected()) {
+            this.matchRepository.deleteMatch(id);
+        }
+        
         return true;
     }
 }

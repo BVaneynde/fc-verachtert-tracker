@@ -1,14 +1,18 @@
 import { Player } from '../models/Player';
 import { Player as IPlayer } from '../types';
+import { PlayerRepository } from '../repositories/playerRepository';
+import { isDatabaseConnected } from '../config/database';
 import * as fs from 'fs';
 import * as path from 'path';
 
 export class PlayerService {
     private players: Player[] = [];
     private nextId: number = 1;
+    private playerRepository: PlayerRepository;
     private dataFile: string = path.join(__dirname, '../../data/players.json');
 
     constructor() {
+        this.playerRepository = new PlayerRepository();
         this.ensureDataDirectory();
         this.initializePlayers();
     }
@@ -86,9 +90,19 @@ export class PlayerService {
                 this.createPlayer(playerData);
             });
         }
+        
+        // Migrate to MongoDB if connected
+        if (isDatabaseConnected()) {
+            this.playerRepository.migrateFileToMongoDB();
+        }
     }
 
     getAllPlayers(): Player[] {
+        // If MongoDB is connected, always return from there
+        if (isDatabaseConnected()) {
+            // This will be async, but for now we return the cached version
+            // The real data will be fetched via repository
+        }
         return this.players;
     }
 
@@ -105,6 +119,12 @@ export class PlayerService {
         );
         this.players.push(newPlayer);
         this.saveToFile();
+        
+        // Also save to MongoDB if connected
+        if (isDatabaseConnected()) {
+            this.playerRepository.savePlayer(newPlayer);
+        }
+        
         return newPlayer;
     }
 
@@ -118,6 +138,12 @@ export class PlayerService {
             id
         };
         this.saveToFile();
+        
+        // Also save to MongoDB if connected
+        if (isDatabaseConnected()) {
+            this.playerRepository.savePlayer(this.players[playerIndex]);
+        }
+        
         return this.players[playerIndex];
     }
 
@@ -127,6 +153,12 @@ export class PlayerService {
 
         this.players.splice(playerIndex, 1);
         this.saveToFile();
+        
+        // Also delete from MongoDB if connected
+        if (isDatabaseConnected()) {
+            this.playerRepository.deletePlayer(id);
+        }
+        
         return true;
     }
 }

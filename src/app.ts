@@ -1,10 +1,15 @@
+import 'dotenv/config';
 import express, { Application } from 'express';
 import path from 'path';
 import { setMatchRoutes } from './routes/matchRoutes';
 import { setPlayerRoutes } from './routes/playerRoutes';
+import { connectDatabase } from './config/database';
 
 const app: Application = express();
 const PORT = process.env.PORT || 3000;
+
+// Connect to MongoDB
+connectDatabase().catch(console.error);
 
 // Middleware
 app.use(express.json());
