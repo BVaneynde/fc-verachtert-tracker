@@ -3,5 +3,3 @@ dist/
 *.log
 .env
 .DS_Store
-data/matches.json
-data/players.json
