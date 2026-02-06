@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC Verachtert - Wedstrijden</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>FC Verachtert - Wedstrijden</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/matches.html">Wedstrijden</a></li>
+                <li><a href="/players.html">Spelers</a></li>
+                <li><a href="/topscorers.html">Topscorers</a></li>
+                <li><a href="/season-overview.html">Seizoen Overzicht</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="add-match">
+            <h2>Manuele Wedstrijd Toevoegen</h2>
+            <p>Gebruik dit formulier om een wedstrijd toe te voegen die niet in de kalender staat.</p>
+            <form id="add-match-form">
+                <div class="form-group">
+                    <label for="match-date">Datum:</label>
+                    <input type="date" id="match-date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="match-opponent">Tegenstander:</label>
+                    <input type="text" id="match-opponent" name="opponent" required placeholder="Bijv. KV Mechelen B">
+                </div>
+                <div class="form-group">
+                    <label for="match-location">Locatie:</label>
+                    <select id="match-location" name="isHomeGame" required>
+                        <option value="true">Thuis</option>
+                        <option value="false">Uit</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Wedstrijd Toevoegen</button>
+            </form>
+        </section>
+        
+        <section id="matches">
+            <h2>Wedstrijdresultaten</h2>
+            <p>De wedstrijden worden automatisch opgehaald van de FC Verachtert kalender.</p>
+            
+            <div class="form-group">
+                <label for="season-filter">Filter op seizoen:</label>
+                <select id="season-filter">
+                    <option value="all">Alle seizoenen</option>
+                </select>
+            </div>
+            
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Datum</th>
+                        <th>Wedstrijd</th>
+                        <th>Score</th>
+                        <th>Resultaat</th>
+                        <th>Evenement</th>
+                        <th>Acties</th>
+                    </tr>
+                </thead>
+                <tbody id="matches-tbody">
+                    <tr><td colspan="6">Laden...</td></tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 FC Verachtert Tracker</p>
+    </footer>
+    <script src="/js/matches.js"></script>
+</body>
+</html>

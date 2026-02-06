@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC Verachtert - Wedstrijd Details</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>FC Verachtert - Wedstrijd Details</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/matches.html">Wedstrijden</a></li>
+                <li><a href="/players.html">Spelers</a></li>
+                <li><a href="/topscorers.html">Topscorers</a></li>
+                <li><a href="/season-overview.html">Seizoen Overzicht</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="match-info">
+            <h2 id="match-title">Laden...</h2>
+            <p id="match-date"></p>
+        </section>
+
+        <section id="score-section">
+            <h3>Score</h3>
+            <form id="score-form">
+                <div class="score-inputs">
+                    <div>
+                        <label>FC Verachtert:</label>
+                        <input type="number" id="home-score" min="0" value="0" required>
+                    </div>
+                    <div>
+                        <label>Tegenstander:</label>
+                        <input type="number" id="away-score" min="0" value="0" required>
+                    </div>
+                </div>
+                <button type="submit">Opslaan</button>
+            </form>
+        </section>
+
+        <section id="scorers-section">
+            <h3>Doelpuntenmakers</h3>
+            <div id="scorers-list"></div>
+            <form id="scorer-form">
+                <div>
+                    <label>Speler:</label>
+                    <select id="scorer-player" required>
+                        <option value="">Selecteer speler</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Aantal doelpunten:</label>
+                    <input type="number" id="scorer-goals" min="1" value="1" required>
+                </div>
+                <button type="submit">Toevoegen</button>
+            </form>
+        </section>
+
+        <section id="lineup-section">
+            <h3>Opstellingslijst</h3>
+            <div id="lineup-selection">
+                <p>Selecteer de spelers die meegespeeld hebben:</p>
+                <div id="player-checkboxes"></div>
+            </div>
+            <button id="save-lineup" class="btn-primary">Opstelling Opslaan</button>
+        </section>
+
+        <section id="notes-section">
+            <h3>Notities</h3>
+            <form id="notes-form">
+                <textarea id="match-notes" rows="4" placeholder="Bijzonderheden over deze wedstrijd..."></textarea>
+                <button type="submit">Notities Opslaan</button>
+            </form>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 FC Verachtert Tracker</p>
+    </footer>
+    <script src="/js/match-details.js"></script>
+</body>
+</html>

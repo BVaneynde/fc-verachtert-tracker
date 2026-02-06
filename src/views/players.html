@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC Verachtert - Spelers</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>FC Verachtert - Spelers</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/matches.html">Wedstrijden</a></li>
+                <li><a href="/players.html">Spelers</a></li>
+                <li><a href="/topscorers.html">Topscorers</a></li>
+                <li><a href="/season-overview.html">Seizoen Overzicht</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="add-player">
+            <h2>Speler Toevoegen</h2>
+            <form id="player-form">
+                <div>
+                    <label>Naam:</label>
+                    <input type="text" id="player-name" required>
+                </div>
+                <button type="submit">Toevoegen</button>
+            </form>
+        </section>
+
+        <section id="players">
+            <h2>Spelerslijst</h2>
+            
+            <div class="form-group">
+                <label for="season-filter">Filter op seizoen:</label>
+                <select id="season-filter">
+                    <option value="all">Alle seizoenen</option>
+                </select>
+            </div>
+            
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Naam</th>
+                        <th>Gespeelde Wedstrijden</th>
+                        <th>Totaal Wedstrijden</th>
+                        <th>Aanwezigheid</th>
+                        <th>Acties</th>
+                    </tr>
+                </thead>
+                <tbody id="players-tbody">
+                    <tr><td colspan="5">Laden...</td></tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 FC Verachtert Tracker</p>
+    </footer>
+    <script src="/js/players.js"></script>
+</body>
+</html>

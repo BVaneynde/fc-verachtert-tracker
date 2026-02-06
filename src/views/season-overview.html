@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC Verachtert - Seizoen Overzicht</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>FC Verachtert - Seizoen Overzicht</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/matches.html">Wedstrijden</a></li>
+                <li><a href="/players.html">Spelers</a></li>
+                <li><a href="/topscorers.html">Topscorers</a></li>
+                <li><a href="/season-overview.html">Seizoen Overzicht</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="season-stats">
+            <h2>Seizoen Statistieken</h2>
+            
+            <div class="form-group">
+                <label for="season-filter">Kies seizoen:</label>
+                <select id="season-filter">
+                    <option value="all">Alle seizoenen</option>
+                </select>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Totaal Wedstrijden</h3>
+                    <p id="total-matches">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Gespeelde Wedstrijden</h3>
+                    <p id="played-matches">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Gewonnen</h3>
+                    <p id="total-wins">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Gelijkspel</h3>
+                    <p id="total-draws">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Verloren</h3>
+                    <p id="total-losses">0</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="matches-summary">
+            <h2>Recente Wedstrijden</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Datum</th>
+                        <th>Wedstrijd</th>
+                        <th>Score</th>
+                        <th>Resultaat</th>
+                    </tr>
+                </thead>
+                <tbody id="overview-matches-tbody">
+                    <!-- Wedstrijden worden hier dynamisch toegevoegd -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 FC Verachtert Tracker</p>
+    </footer>
+    <script src="/js/season-overview.js"></script>
+</body>
+</html>
+</html>
